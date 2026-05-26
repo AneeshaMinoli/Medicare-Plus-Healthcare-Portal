@@ -1,0 +1,51 @@
+# IDE and system files
+.vs/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Build folders
+bin/
+obj/
+
+# Dependency directories
+node_modules/
+vendor/
+packages/
+
+# Visual Studio / build output
+Debug/
+Release/
+
+# Environment/config secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+
+# Database backups and temp files
+*.sql
+*.sql.gz
+*.sql.zip
+*.sql.bak
+*.dump
+*.bak
+*.tmp
+*.log
+*.cache
+*.swp
+*~
+*.rar
+*.zip
+*.tar
+*.gz
+
+# MySQL local engine files and backups
+medi_plus/*.frm
+medi_plus/*.ibd
+medi_plus/db.opt
+
+# App runtime uploads
+medi_plus/uploads/

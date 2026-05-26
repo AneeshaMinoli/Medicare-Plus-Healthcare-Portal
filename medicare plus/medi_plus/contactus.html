@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Medicare Plus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f285eecc, #cd32d8ff, #ffffff);
+            overflow-x: hidden;
+            color: #222;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            background: transparent;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            color: #035f5b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-btn {
+            padding: 10px 25px;
+            background: #fff;
+            color: #035f5b;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            margin-top: 120px;
+            display: flex;
+            justify-content: space-between;
+            padding: 50px 7%;
+            align-items: center;
+        }
+
+        .hero-left {
+            max-width: 45%;
+        }
+
+        .hero-left h1 {
+            font-size: 42px;
+            color: #003f3c;
+            margin-bottom: 15px;
+        }
+
+        .hero-left p {
+            font-size: 18px;
+            color: #003f3c;
+            margin-bottom: 25px;
+        }
+
+        .book-btn {
+            padding: 14px 35px;
+            background: #006f6a;
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+        }
+
+        .doctor-img {
+            width: 550px;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .15));
+            margin-top: -40px;
+        }
+
+        /* =========================
+       CONTACT SECTION (fixed)
+       ========================= */
+        .contact-section {
+            display: flex;
+            background-color: #ffffff;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 50px 7%;
+            gap: 30px;
+            flex-wrap: wrap;
+            /* stack on small screens */
+        }
+
+        /* base panel styles - NO opacity here */
+        .left-panel,
+        .right-panel {
+            flex: 1;
+            min-width: 300px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px;
+            /*box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);*/
+            transition: transform .4s ease, box-shadow .25s ease;
+        }
+
+        .left-panel:hover,
+        .right-panel:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 35px rgba(239, 19, 202, 0.4);
+        }
+
+        /* grid inside left panel */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+
+        .info-box {
+            background: #f3eaff;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 15px;
+            color: #4b1f8c;
+            font-weight: 500;
+            border-left: 6px solid #7a4fbb;
+        }
+
+        .subheading {
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: #7a4fbb;
+            text-transform: uppercase;
+        }
+
+        .main-heading {
+            font-size: 34px;
+            font-weight: 700;
+            color: #4b1f8c;
+            margin-top: 6px;
+        }
+
+        /* contact form */
+        .contact-form h2 {
+            font-size: 26px;
+            color: #4b1f8c;
+            margin-bottom: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 1.7px solid #c8a8ff;
+            background: #f8f3ff;
+            font-size: 15px;
+        }
+
+        .contact-form button {
+            background: #7a4fbb;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .contact-form button:hover {
+            background: #5a3395;
+        }
+
+        /* ===== Fade-in animation (simplified & consistent) ===== */
+        /* initial off-screen states */
+        .fade-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all .6s ease-out;
+        }
+
+        .fade-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all .6s ease-out;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .6s ease-out;
+        }
+
+        /* revealed state used by JS */
+        .revealed {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        /* responsive tweaks */
+        @media (max-width:900px) {
+            .hero {
+                flex-direction: column;
+                gap: 20px;
+                padding: 40px 6%;
+            }
+
+            .doctor-img {
+                width: 100%;
+                max-width: 420px;
+                margin-top: 0;
+            }
+
+            .contact-section {
+                padding: 30px 6%;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .main-heading {
+                font-size: 28px;
+            }
+        }
+
+        /* POPUP OVERLAY */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* POPUP BOX */
+        .popup-box {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 18px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(122, 79, 187, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .popup-box h3 {
+            color: #7a4fbb;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .popup-box p {
+            color: #4b1f8c;
+            margin-bottom: 20px;
+        }
+
+        .popup-box button {
+            background: #7a4fbb;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            font-size: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .popup-box button:hover {
+            background: #5a3395;
+        }
+
+        /* POPUP ANIMATIONS */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        /* FOOTER BASE */
+        .footer {
+            background: linear-gradient(135deg, #d9c3ff, #c7a7ff);
+            padding: 50px 80px;
+            color: #2f2547;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* GRID LAYOUT */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT SECTION */
+        .footer-left {
+            width: 30%;
+        }
+
+        .footer-brand {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a2e7f;
+        }
+
+        .footer-verse {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #4d3c66;
+        }
+
+        /* CENTER LINKS */
+        .footer-links h3,
+        .footer-contact h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #4a2e7f;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: #3a2d54;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #6e3dd4;
+        }
+
+        /* RIGHT SECTION */
+        .footer-contact p {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #3a2d54;
+        }
+
+        /* BOTTOM BAR */
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: #3a2d54;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-left,
+            .footer-links,
+            .footer-contact {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Medicare Plus</div>
+        <nav>
+            <ul>
+                <li><a href="medicare_home.php">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="doctors.html">Our Doctors</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <a class="login-btn" href="login.php">Login</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-left fade-left">
+            <h1>Where Compassion Meets Expert Medical Care</h1>
+            <p>Contact Us today for the best healthcare!</p>
+            <a class="book-btn" href="login.php">Book Appointment</a>
+        </div>
+        <div class="hero-right fade-right">
+            <img class="doctor-img" src="contactbg.png" alt="Doctor">
+        </div>
+    </section>
+
+    <!-- ====== CONTACT SECTION ====== -->
+    <section class="contact-section">
+        <!-- LEFT PANEL (has fade-left) -->
+        <div class="left-panel fade-left">
+            <div class="subheading">Get in touch</div>
+            <div class="main-heading">Medicare Plus</div>
+
+            <div class="grid">
+                <div class="info-box">📞 Phone: +94 77 123 4567</div>
+                <div class="info-box">📧 Email: support@medicareplus.com</div>
+                <div class="info-box">📍 Address: Colombo 05</div>
+                <div class="info-box">⏰ Hours: Mon–Fri, 8.00 AM–10.00 PM</div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL (has fade-right) -->
+        <div class="right-panel contact-form fade-right">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <input name="name" type="text" placeholder="Full Name" required>
+                <input name="email" type="email" placeholder="Email Address" required>
+                <input name="subject" type="text" placeholder="Subject" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SUCCESS POPUP -->
+    <div id="popup" class="popup">
+        <div class="popup-box">
+            <h3>Message Sent!</h3>
+            <p>Your message has been sent. We’ll reach back to you soon!</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- LEFT: Brand + Verse -->
+            <div class="footer-left">
+                <h2 class="footer-brand">Medicare Plus</h2>
+                <p class="footer-verse">
+                    "Your health is our mission — your trust is our strength."
+                </p>
+            </div>
+
+            <!-- CENTER: Navigation -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="medicare_home.php">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- RIGHT: Contact + Info -->
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><strong>Hours:</strong> Mon – Sat: 8.00am – 10.00pm</p>
+                <p><strong>Hotline:</strong> +94 77 123 4567</p>
+                <p><strong>Address:</strong> Colombo, Sri Lanka</p>
+                <p><strong>Email:</strong> support@medicareplus.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Medicare Plus — All Rights Reserved
+        </div>
+    </footer>
+
+
+    <script>
+        // Reveal on scroll for elements that have .fade-left / .fade-right / .fade-up
+        const revealEls = document.querySelectorAll('.fade-left, .fade-right, .fade-up');
+
+        function reveal() {
+            revealEls.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // when top of element is within the viewport (adjust threshold as needed)
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('revealed');
+                } else {
+                    el.classList.remove('revealed'); // keep this if you want the animation to re-run on scroll up/down
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('resize', reveal);
+        // run once on load
+        reveal();
+    </script>
+    <script>
+        function openPopup() {
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        // Override form submission
+        const contactForm = document.querySelector(".contact-form form");
+
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // stop form from reloading page
+            openPopup();
+
+            // optional: reset the form
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+
+</html>

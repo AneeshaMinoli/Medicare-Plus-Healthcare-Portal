@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Plus</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        body {
+            background: linear-gradient(135deg, #f285eecc, #cd32d8ff, #ffffffff);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            /* scrolls away normally */
+            background: transparent;
+        }
+
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ffffffff;
+        }
+
+        /* NAV BAR CENTER */
+        nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #035f5b;
+            font-weight: 500;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #013230;
+        }
+
+        /* LOGIN BUTTON */
+        .login-btn {
+            padding: 14px 25px;
+            background: white;
+            color: #035f5b;
+            border-radius: 25px;
+            border: none;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #035f5b;
+            color: white;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 120px;
+            display: flex;
+            justify-content: space-between;
+            padding: 50px 7%;
+            align-items: center;
+
+        }
+
+        /* Left Side */
+        .hero-left {
+            max-width: 45%;
+        }
+
+        .hero-left h1 {
+            font-size: 42px;
+            color: #003f3c;
+            margin-bottom: 15px;
+        }
+
+        .hero-left p {
+            font-size: 18px;
+            color: #003f3c;
+            margin-bottom: 25px;
+        }
+
+        .book-btn {
+            padding: 14px 35px;
+            background: #006f6a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .book-btn:hover {
+            background: #024542;
+        }
+
+        /* Right Side Image */
+        .doctor-img {
+            width: 650px;
+            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15));
+            margin-top: -190px;
+            /* move image UP */
+        }
+
+
+
+        /* ==== FADE ANIMATION BASE STYLES ==== */
+        .fade-left,
+        .fade-right,
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* LEFT */
+        .fade-left {
+            transform: translateX(-50px);
+        }
+
+        /* RIGHT */
+        .fade-right {
+            transform: translateX(50px);
+        }
+
+        /* UP */
+        .fade-up {
+            transform: translateY(50px);
+        }
+
+        .fade-down {
+            transform: translateY(50px);
+        }
+
+        /* ==== REVEALED STATE ==== */
+        .revealed {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            padding: 80px 50px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .services-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .services-intro .small-text {
+            font-size: 14px;
+            color: #670370;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .services-intro h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .services-intro h2 span {
+            color: #b90fc9;
+        }
+
+        .services-intro .intro-text {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* DEPARTMENTS CARDS */
+        .departments {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 columns */
+            gap: 30px;
+            justify-items: center;
+        }
+
+        /* Each department card */
+        .dept-card {
+            display: flex;
+            align-items: flex-start;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 380px;
+            transition: transform 0.3s;
+        }
+
+        .dept-card:hover {
+            transform: translateY(-5px);
+            color: #e68ae1cc;
+        }
+
+        .dept-card img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+
+        .dept-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #8e0fb2;
+        }
+
+        .dept-info p {
+            font-size: 14px;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .learn-btn {
+            font-size: 14px;
+            color: #ba04c7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .learn-btn:hover {
+            color: #d73be2;
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 1024px) {
+            .departments {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns on tablet */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .departments {
+                grid-template-columns: 1fr;
+                /* 1 column on mobile */
+            }
+
+            .dept-card {
+                flex-direction: row;
+                /* Keep image left, text right */
+            }
+        }
+
+        /* QUICK SOLUTION SECTION */
+        .quick-solution {
+            padding: 80px 50px;
+            background-color: #fff;
+        }
+
+        .solution-container {
+            display: flex;
+            align-items: stretch;
+            /* Make both columns same height */
+            gap: 40px;
+        }
+
+        .solution-image img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .solution-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .solution-content .small-text {
+            font-size: 14px;
+            color: #a507a3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .solution-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .solution-content h2 span {
+            color: #9209cc;
+        }
+
+        .solution-content .description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .solution-points {
+            list-style: none;
+            margin: 0 0 30px 0;
+            padding: 0;
+        }
+
+        .solution-points li {
+            font-size: 16px;
+            color: #0b0b0b;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .solution-points li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #c021f5;
+        }
+
+        .solution-content .book-btn {
+            padding: 15px 30px;
+            background-color: #940ea0;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            width: fit-content;
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 1024px) {
+            .solution-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .solution-image img {
+                height: 300px;
+            }
+        }
+
+        /* FOOTER BASE */
+        .footer {
+            background: linear-gradient(135deg, #d9c3ff, #c7a7ff);
+            padding: 50px 80px;
+            color: #2f2547;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* GRID LAYOUT */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT SECTION */
+        .footer-left {
+            width: 30%;
+        }
+
+        .footer-brand {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a2e7f;
+        }
+
+        .footer-verse {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #4d3c66;
+        }
+
+        /* CENTER LINKS */
+        .footer-links h3,
+        .footer-contact h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #4a2e7f;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: #3a2d54;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #6e3dd4;
+        }
+
+        /* RIGHT SECTION */
+        .footer-contact p {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #3a2d54;
+        }
+
+        /* BOTTOM BAR */
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: #3a2d54;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-left,
+            .footer-links,
+            .footer-contact {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .departments-section {
+            padding: 60px 10%;
+            background: #f8f4ff;
+        }
+
+        .department-block {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .dept-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #5a2ca0;
+            margin-bottom: 10px;
+        }
+
+        .book-btn {
+            background: #7b39d1;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 40px;
+            transition: 0.3s;
+        }
+
+        .book-btn:hover {
+            background: #5a2ca0;
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .doctor-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(90, 44, 160, 0.15);
+            transition: 0.3s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(90, 44, 160, 0.25);
+        }
+
+        .doctor-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #b78af7;
+        }
+
+        .doctor-card h3 {
+            font-size: 20px;
+            color: #5a2ca0;
+            margin-bottom: 5px;
+        }
+
+        .doctor-card .spec {
+            color: #444;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .doctor-card .exp {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            color: #ffb400;
+            font-size: 18px;
+        }
+
+         /* HERO SECTION */
+        .book-section {
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: linear-gradient(135deg, #e9d8ff, #b178f3ff);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* LEFT TEXT */
+        .book-content {
+            width: 50%;
+        }
+
+        .book-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #3a2b47;
+        }
+
+        .book-content h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-top: 5px;
+            color: #3a2b47;
+        }
+
+        .book-content p {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #4c3f58;
+        }
+
+        .book-btn {
+            margin-top: 25px;
+            display: inline-block;
+            padding: 14px 28px;
+            background: #7a4bd1;
+            color: white;
+            font-size: 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .book-btn:hover {
+            background: #653baf;
+        }
+
+        /* RIGHT IMAGE */
+        .book-image {
+            width: 40%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            height: 50%;
+            position: relative;
+        }
+
+        .book-image img {
+            height: 150%;
+            position: absolute;
+            bottom: -50px;
+            right: 0;
+            object-fit: contain;
+        }
+
+        /* BUBBLES */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Different sizes */
+        .bubble1 {
+            width: 180px;
+            height: 180px;
+            top: 10%;
+            left: 65%;
+        }
+
+        .bubble2 {
+            width: 130px;
+            height: 130px;
+            bottom: 15%;
+            left: 50%;
+        }
+
+        .bubble3 {
+            width: 90px;
+            height: 90px;
+            bottom: 30%;
+            right: 10%;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .book-section {
+                flex-direction: column-reverse;
+                height: auto;
+                padding-top: 50px;
+            }
+
+            .book-image img {
+                position: relative;
+                width: 60%;
+                height: auto;
+            }
+
+            .book-content {
+                width: 100%;
+                text-align: center;
+                padding-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Medicare Plus</div>
+
+        <nav>
+            <ul>
+                <li><a href="medicare_home.php">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="doctors.html">Our Doctors</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <a href="login.php" class="login-btn">Login</a>
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+        <div class="hero-left fade-left">
+            <h1>The Best Medical and Treatment Center for You</h1>
+            <p>Your health is our top priority. Get connected with our professional doctors.</p>
+
+
+            <a href="login.php" class="book-btn">Book Appointment</a>
+        </div>
+
+        <div class="hero-right fade-right">
+            <img src="doctorbg.png" alt="Doctor" class="doctor-img">
+        </div>
+    </section>
+
+    <section class="departments-section">
+
+        <!-- ====== DEPARTMENT TEMPLATE START ====== -->
+        <div class="department-block" data-aos="fade-up">
+
+            <h2 class="dept-title fade-up primary Care">Primary Care</h2>
+
+            <a href="login.php" class="book-btn fade-up">Book Appointment</a>
+
+            <div class="doctors-grid fade-up">
+
+                <!-- Doctor Card -->
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
+                    <h3>Dr. John Doe</h3>
+                    <p class="spec">Primary Care Specialist</p>
+                    <p class="exp">10 years experience</p>
+                    <p class="rating">⭐ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/11.jpg" alt="">
+                    <h3>Dr. Sarah Lee</h3>
+                    <p class="spec">Primary Care Physician</p>
+                    <p class="exp">8 years experience</p>
+                    <p class="rating">⭐ ★ ★ ★ ☆</p>
+                </div>
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                    <h3>Dr. Michael Perera</h3>
+                    <p class="spec">Primary Care Consultant</p>
+                    <p class="exp">12 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                    <h3>Dr. Amanda Silva</h3>
+                    <p class="spec">Family Medicine Specialist</p>
+                    <p class="exp">7 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="">
+                    <h3>Dr. Kevin Jayasinghe</h3>
+                    <p class="spec">General Physician</p>
+                    <p class="exp">9 years experience</p>
+                    <p class="rating">★ ★ ★ ☆ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+                    <h3>Dr. Melissa Fernando</h3>
+                    <p class="spec">Primary Care Specialist</p>
+                    <p class="exp">11 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
+                    <h3>Dr. Nadeeshan Wijesinghe</h3>
+                    <p class="spec">General Practitioner</p>
+                    <p class="exp">6 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="">
+                    <h3>Dr. Dinusha Karunaratne</h3>
+                    <p class="spec">Family Health Specialist</p>
+                    <p class="exp">5 years experience</p>
+                    <p class="rating">★ ★ ★ ☆ ☆</p>
+                </div>
+
+
+                <!-- Add 6 more doctor cards exactly like above -->
+            </div>
+        </div>
+        <!-- ====== DEPARTMENT TEMPLATE END ====== -->
+
+        <!-- Duplicate the block below for each department -->
+        <div class="department-block" data-aos="fade-up">
+            <h2 class="dept-title fade-up">Heart Care</h2>
+            <a href="login.php" class="book-btn fade-up">Book Appointment</a>
+
+            <div class="doctors-grid fade-up">
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="">
+                    <h3>Dr. Adrian Matthews</h3>
+                    <p class="spec">Cardiologist</p>
+                    <p class="exp">14 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="">
+                    <h3>Dr. Kavindi Jayawardena</h3>
+                    <p class="spec">Heart Specialist</p>
+                    <p class="exp">9 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/23.jpg" alt="">
+                    <h3>Dr. Nathan Fernando</h3>
+                    <p class="spec">Interventional Cardiologist</p>
+                    <p class="exp">11 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="">
+                    <h3>Dr. Anika De Alwis</h3>
+                    <p class="spec">Consultant Cardiologist</p>
+                    <p class="exp">7 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="">
+                    <h3>Dr. Brian Thilakarathna</h3>
+                    <p class="spec">Heart Rhythm Specialist</p>
+                    <p class="exp">15 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="">
+                    <h3>Dr. Evelyn Kooper</h3>
+                    <p class="spec">Cardiac Surgeon</p>
+                    <p class="exp">10 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="">
+                    <h3>Dr. Ruwan Siriwardena</h3>
+                    <p class="spec">Senior Cardiologist</p>
+                    <p class="exp">18 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/52.jpg" alt="">
+                    <h3>Dr. Nelomi Ranasinghe</h3>
+                    <p class="spec">Heart Failure Specialist</p>
+                    <p class="exp">6 years experience</p>
+                    <p class="rating">★ ★ ★ ☆ ☆</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="department-block" data-aos="fade-up">
+            <h2 class="dept-title fade-up">Dermatology</h2>
+            <a href="login.php" class="book-btn fade-up">Book Appointment</a>
+            <div class="doctors-grid">
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="">
+                    <h3>Dr. Manesha Kalansuriya</h3>
+                    <p class="spec">Dermatologist</p>
+                    <p class="exp">10 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/58.jpg" alt="">
+                    <h3>Dr. Samuel Howard</h3>
+                    <p class="spec">Skin Specialist</p>
+                    <p class="exp">8 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="">
+                    <h3>Dr. Ayana Fonseka</h3>
+                    <p class="spec">Cosmetic Dermatologist</p>
+                    <p class="exp">5 years experience</p>
+                    <p class="rating">★ ★ ★ ☆ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="">
+                    <h3>Dr. Dylan Jayasuriya</h3>
+                    <p class="spec">Clinical Dermatologist</p>
+                    <p class="exp">9 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/70.jpg" alt="">
+                    <h3>Dr. Serena Liyanage</h3>
+                    <p class="spec">Skin & Laser Specialist</p>
+                    <p class="exp">11 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/72.jpg" alt="">
+                    <h3>Dr. Milan Abeysekara</h3>
+                    <p class="spec">Dermatology Consultant</p>
+                    <p class="exp">13 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/75.jpg" alt="">
+                    <h3>Dr. Tashini Karunarathne</h3>
+                    <p class="spec">Pediatric Dermatologist</p>
+                    <p class="exp">6 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/80.jpg" alt="">
+                    <h3>Dr. Andrew Greene</h3>
+                    <p class="spec">Skin Infection Specialist</p>
+                    <p class="exp">7 years experience</p>
+                    <p class="rating">★ ★ ★ ☆ ☆</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="department-block">
+            <h2 class="dept-title fade-up">Neurology</h2>
+            <a href="login.php" class="book-btn">Book Appointment</a>
+            <div class="doctors-grid fade-up">
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/81.jpg" alt="">
+                    <h3>Dr. Kaushan Silva</h3>
+                    <p class="spec">Neurologist</p>
+                    <p class="exp">12 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/82.jpg" alt="">
+                    <h3>Dr. Maria Hansson</h3>
+                    <p class="spec">Brain & Nerve Specialist</p>
+                    <p class="exp">9 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="">
+                    <h3>Dr. Kevin Rajakaruna</h3>
+                    <p class="spec">Neurology Consultant</p>
+                    <p class="exp">14 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/84.jpg" alt="">
+                    <h3>Dr. Tiana Crowns</h3>
+                    <p class="spec">Neuroscience Specialist</p>
+                    <p class="exp">6 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="">
+                    <h3>Dr. Rajiv Wickramarathna</h3>
+                    <p class="spec">Stroke Specialist</p>
+                    <p class="exp">10 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/86.jpg" alt="">
+                    <h3>Dr. Amanda Stone</h3>
+                    <p class="spec">Neuro Rehabilitation Expert</p>
+                    <p class="exp">5 years experience</p>
+                    <p class="rating">★ ★ ★ ☆ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/87.jpg" alt="">
+                    <h3>Dr. Chamika De Silva</h3>
+                    <p class="spec">Spinal Neurologist</p>
+                    <p class="exp">8 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="">
+                    <h3>Dr. Shalini Perera</h3>
+                    <p class="spec">Pediatric Neurologist</p>
+                    <p class="exp">7 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="department-block">
+            <h2 class="dept-title fade-up">Orthopedics</h2>
+            <a href="login.php" class="book-btn fade-up">Book Appointment</a>
+            <div class="doctors-grid">
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/89.jpg" alt="">
+                    <h3>Dr. Nimal Karunathilake</h3>
+                    <p class="spec">Orthopedic Surgeon</p>
+                    <p class="exp">16 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/90.jpg" alt="">
+                    <h3>Dr. Janani Kularathna</h3>
+                    <p class="spec">Bone & Joint Specialist</p>
+                    <p class="exp">11 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="">
+                    <h3>Dr. Christopher Hale</h3>
+                    <p class="spec">Orthopedic Consultant</p>
+                    <p class="exp">9 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/92.jpg" alt="">
+                    <h3>Dr. Hiruni Senanayake</h3>
+                    <p class="spec">Sports Injury Specialist</p>
+                    <p="exp">7 years experience</p>
+                        <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/93.jpg" alt="">
+                    <h3>Dr. Matthew Lawson</h3>
+                    <p class="spec">Spine Specialist</p>
+                    <p class="exp">12 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/94.jpg" alt="">
+                    <h3>Dr. Shalani Rodrigo</h3>
+                    <p class="spec">Pediatric Orthopedic Specialist</p>
+                    <p class="exp">6 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/95.jpg" alt="">
+                    <h3>Dr. Imran Abdul</h3>
+                    <p class="spec">Joint Replacement Expert</p>
+                    <p class="exp">15 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/96.jpg" alt="">
+                    <h3>Dr. Sashini Cooray</h3>
+                    <p class="spec">Bone Injury Specialist</p>
+                    <p class="exp">8 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="department-block">
+            <h2 class="dept-title fade-up">Surgery</h2>
+            <a href="login.php" class="book-btn fade-up">Book Appointment</a>
+            <div class="doctors-grid">
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/97.jpg" alt="">
+                    <h3>Dr. Adrian Collins</h3>
+                    <p class="spec">General Surgeon</p>
+                    <p class="exp">15 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/98.jpg" alt="">
+                    <h3>Dr. Nadeesha Prabath</h3>
+                    <p class="spec">Senior Surgical Specialist</p>
+                    <p class="exp">13 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/99.jpg" alt="">
+                    <h3>Dr. Alexander Gamage</h3>
+                    <p class="spec">Laparoscopic Surgeon</p>
+                    <p class="exp">9 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
+                    <h3>Dr. Shanika Rodrigo</h3>
+                    <p class="spec">Trauma Surgeon</p>
+                    <p class="exp">10 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="">
+                    <h3>Dr. Benjamin Joseph</h3>
+                    <p class="spec">Colorectal Surgeon</p>
+                    <p class="exp">11 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ★</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/15.jpg" alt="">
+                    <h3>Dr. Dulani Weerasekara</h3>
+                    <p class="spec">Hepatobiliary Surgeon</p>
+                    <p class="exp">7 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/men/16.jpg" alt="">
+                    <h3>Dr. Kevin Turner</h3>
+                    <p class="spec">Oncology Surgeon</p>
+                    <p class="exp">8 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+                <div class="doctor-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="">
+                    <h3>Dr. Hiruni Rathnayake</h3>
+                    <p class="spec">Breast Surgeon</p>
+                    <p class="exp">6 years experience</p>
+                    <p class="rating">★ ★ ★ ★ ☆</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+<section class="book-section">
+            <div class="book-image fade-right">
+                <img src="book.png" alt="Doctor">
+            </div>
+
+            <!-- Bubble Decoration -->
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+            <div class="bubble bubble3"></div>
+
+            <div class="book-content fade-left">
+                <h1>Make Your Health a Priority</h1>
+                <h2>Don't Overlook It</h2>
+                <p>Your well-being matters. Book an appointment with our specialists today.</p>
+                <a href="login.php" class="book-btn fade-left">Book Appointment</a>
+            </div>
+        </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- LEFT: Brand + Verse -->
+            <div class="footer-left">
+                <h2 class="footer-brand">Medicare Plus</h2>
+                <p class="footer-verse">
+                    "Your health is our mission — your trust is our strength."
+                </p>
+            </div>
+
+            <!-- CENTER: Navigation -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="medicare_home.php">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- RIGHT: Contact + Info -->
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><strong>Hours:</strong> Mon – Sat: 8.00am – 10.00pm</p>
+                <p><strong>Hotline:</strong> +94 77 123 4567</p>
+                <p><strong>Address:</strong> Colombo, Sri Lanka</p>
+                <p><strong>Email:</strong> support@medicareplus.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Medicare Plus — All Rights Reserved
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        const elements = document.querySelectorAll(".fade-left, .fade-right, .fade-up");
+
+        function revealOnScroll() {
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+                    el.classList.add("revealed");
+                } else {
+                    el.classList.remove("revealed"); // allows animation every scroll
+                }
+            });
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false,   // fade in every time you scroll
+            duration: 900,
+        });
+    </script>
+
+
+</body>
+
+</html>

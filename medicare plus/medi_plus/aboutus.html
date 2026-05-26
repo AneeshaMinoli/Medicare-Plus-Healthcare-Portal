@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Plus</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        body {
+            background: linear-gradient(135deg, #f285eecc, #cd32d8ff, #ffffffff);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            /* scrolls away normally */
+            background: transparent;
+        }
+
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ffffffff;
+        }
+
+        /* NAV BAR CENTER */
+        nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #035f5b;
+            font-weight: 500;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #013230;
+        }
+
+        /* LOGIN BUTTON */
+        .login-btn {
+            padding: 14px 25px;
+            background: white;
+            color: #035f5b;
+            border-radius: 25px;
+            border: none;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #035f5b;
+            color: white;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 120px;
+            display: flex;
+            justify-content: space-between;
+            padding: 50px 7%;
+            align-items: center;
+
+        }
+
+        /* Left Side */
+        .hero-left {
+            max-width: 45%;
+        }
+
+        .hero-left h1 {
+            font-size: 42px;
+            color: #003f3c;
+            margin-bottom: 15px;
+        }
+
+        .hero-left p {
+            font-size: 18px;
+            color: #003f3c;
+            margin-bottom: 25px;
+        }
+
+        .book-btn {
+            padding: 14px 35px;
+            background: #006f6a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .book-btn:hover {
+            background: #024542;
+        }
+
+        /* Right Side Image */
+        .doctor-img {
+            width: 750px;
+            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15));
+            margin-top: -190px;
+            /* move image UP */
+        }
+
+
+
+        /* ==== FADE ANIMATION BASE STYLES ==== */
+        .fade-left,
+        .fade-right,
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* LEFT */
+        .fade-left {
+            transform: translateX(-50px);
+        }
+
+        /* RIGHT */
+        .fade-right {
+            transform: translateX(50px);
+        }
+
+        /* UP */
+        .fade-up {
+            transform: translateY(50px);
+        }
+
+        .fade-down {
+            transform: translateY(50px);
+        }
+
+        /* ==== REVEALED STATE ==== */
+        .revealed {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            padding: 80px 50px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .services-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .services-intro .small-text {
+            font-size: 14px;
+            color: #670370;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .services-intro h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .services-intro h2 span {
+            color: #b90fc9;
+        }
+
+        .services-intro .intro-text {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* DEPARTMENTS CARDS */
+        .departments {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 columns */
+            gap: 30px;
+            justify-items: center;
+        }
+
+        /* Each department card */
+        .dept-card {
+            display: flex;
+            align-items: flex-start;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 380px;
+            transition: transform 0.3s;
+        }
+
+        .dept-card:hover {
+            transform: translateY(-5px);
+            color: #e68ae1cc;
+        }
+
+        .dept-card img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+
+        .dept-info h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #8e0fb2;
+        }
+
+        .dept-info p {
+            font-size: 14px;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .learn-btn {
+            font-size: 14px;
+            color: #ba04c7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .learn-btn:hover {
+            color: #d73be2;
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 1024px) {
+            .departments {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns on tablet */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .departments {
+                grid-template-columns: 1fr;
+                /* 1 column on mobile */
+            }
+
+            .dept-card {
+                flex-direction: row;
+                /* Keep image left, text right */
+            }
+        }
+
+        /* QUICK SOLUTION SECTION */
+        .quick-solution {
+            padding: 80px 50px;
+            background-color: #fff;
+        }
+
+        .solution-container {
+            display: flex;
+            align-items: stretch;
+            /* Make both columns same height */
+            gap: 40px;
+        }
+
+        .solution-image img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .solution-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .solution-content .small-text {
+            font-size: 14px;
+            color: #a507a3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .solution-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .solution-content h2 span {
+            color: #9209cc;
+        }
+
+        .solution-content .description {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .solution-points {
+            list-style: none;
+            margin: 0 0 30px 0;
+            padding: 0;
+        }
+
+        .solution-points li {
+            font-size: 16px;
+            color: #0b0b0b;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .solution-points li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #c021f5;
+        }
+
+        .solution-content .book-btn {
+            padding: 15px 30px;
+            background-color: #940ea0;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            width: fit-content;
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 1024px) {
+            .solution-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .solution-image img {
+                height: 300px;
+            }
+        }
+
+        /* FOOTER BASE */
+        .footer {
+            background: linear-gradient(135deg, #d9c3ff, #c7a7ff);
+            padding: 50px 80px;
+            color: #2f2547;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* GRID LAYOUT */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT SECTION */
+        .footer-left {
+            width: 30%;
+        }
+
+        .footer-brand {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a2e7f;
+        }
+
+        .footer-verse {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #4d3c66;
+        }
+
+        /* CENTER LINKS */
+        .footer-links h3,
+        .footer-contact h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #4a2e7f;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: #3a2d54;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #6e3dd4;
+        }
+
+        /* RIGHT SECTION */
+        .footer-contact p {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #3a2d54;
+        }
+
+        /* BOTTOM BAR */
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: #3a2d54;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-left,
+            .footer-links,
+            .footer-contact {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Medicare Plus</div>
+
+        <nav>
+            <ul>
+                <li><a href="medicare_home.php">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="doctors.html">Our Doctors</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <a href="login.php" class="login-btn">Login</a>
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+        <div class="hero-left fade-left">
+            <h1>The Best Medical and Treatment Center for You</h1>
+            <p>Your health is our top priority. Get connected with our professional doctors.</p>
+
+
+            <a href="login.php" class="book-btn">Book Appointment</a>
+        </div>
+
+        <div class="hero-right fade-right">
+            <img src="aboutus.png" alt="Doctor" class="doctor-img">
+        </div>
+    </section>
+
+
+    <!-- SERVICES SECTION -->
+    <section class="services">
+        <div class="services-intro fade-up">
+            <p class="small-text">Our Services</p>
+            <h2>The <span>Best Quality </span>Services for Your Family</h2>
+            <p class="intro-text">We are committed to providing top-notch healthcare for all members of your family.</p>
+        </div>
+
+        <!-- DEPARTMENTS CARDS -->
+        <div class="departments">
+            <!-- Example: Repeat this block for each department -->
+            <div class="dept-card fade-up">
+                <img src="images/primary-care.png" alt="Primary Care">
+                <div class="dept-info">
+                    <h3>Primary Care</h3>
+                    <p>Comprehensive health services to keep you and your family healthy.</p>
+                    <a href="primary.html" class="learn-btn">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="dept-card fade-up">
+                <img src="images/heart-care.png" alt="Heart Care">
+                <div class="dept-info">
+                    <h3>Heart Care</h3>
+                    <p>Expert cardiology services for a healthy heart and lifestyle.</p>
+                    <a href="cardio.html" class="learn-btn">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="dept-card fade-up">
+                <img src="images/dermatology.png" alt="Dermatology">
+                <div class="dept-info">
+                    <h3>Dermatology</h3>
+                    <p>Advanced skin care treatments for all ages and skin types.</p>
+                    <a href="dermatology.html" class="learn-btn">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="dept-card fade-up">
+                <img src="images/neurology.png" alt="Neurology">
+                <div class="dept-info">
+                    <h3>Neurology</h3>
+                    <p>Specialized neurological care for brain and nerve conditions.</p>
+                    <a href="neurology.html" class="learn-btn">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="dept-card fade-up">
+                <img src="images/orthopedics.png" alt="Orthopedics">
+                <div class="dept-info">
+                    <h3>Orthopedics</h3>
+                    <p>Comprehensive bone, joint, and muscle care for all ages.</p>
+                    <a href="orthopedics.html" class="learn-btn">Learn More →</a>
+                </div>
+            </div>
+
+            <div class="dept-card fade-up">
+                <img src="images/surgery.png" alt="Surgery">
+                <div class="dept-info">
+                    <h3>Surgery</h3>
+                    <p>Advanced surgical procedures performed by expert surgeons.</p>
+                    <a href="surgery.html" class="learn-btn">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK SOLUTION SECTION -->
+    <section class="quick-solution">
+        <div class="solution-container fade-left">
+            <!-- Left Image -->
+            <div class="solution-image">
+                <img src="appoint.png" alt="Quick Solution">
+            </div>
+
+            <!-- Right Content -->
+            <div class="solution-content fade-right">
+                <p class="small-text">Quick Solution</p>
+                <h2>Easy Same or Next Day <span>Appointments</span> </h2>
+                <p class="description">Get connected with our doctors quickly and easily with just a few clicks.</p>
+
+                <ul class="solution-points">
+                    <li>✔ Easy online booking</li>
+                    <li>✔ Best quality appointment services</li>
+                </ul>
+
+                <a href="login.php" class="book-btn">Book Appointment</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- LEFT: Brand + Verse -->
+            <div class="footer-left">
+                <h2 class="footer-brand">Medicare Plus</h2>
+                <p class="footer-verse">
+                    "Your health is our mission — your trust is our strength."
+                </p>
+            </div>
+
+            <!-- CENTER: Navigation -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="medicare_home.php">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- RIGHT: Contact + Info -->
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><strong>Hours:</strong> Mon – Sat: 8.00am – 10.00pm</p>
+                <p><strong>Hotline:</strong> +94 77 123 4567</p>
+                <p><strong>Address:</strong> Colombo, Sri Lanka</p>
+                <p><strong>Email:</strong> support@medicareplus.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Medicare Plus — All Rights Reserved
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        const elements = document.querySelectorAll(".fade-left, .fade-right, .fade-up");
+
+        function revealOnScroll() {
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+                    el.classList.add("revealed");
+                } else {
+                    el.classList.remove("revealed"); // allows animation every scroll
+                }
+            });
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
+    </script>
+
+
+</body>
+
+</html>

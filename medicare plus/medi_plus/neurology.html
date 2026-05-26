@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Plus | Neurology Department</title>
+   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        body {
+            background: linear-gradient(135deg, #eb75e7e3, #cd32d871, #ffffffff);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            /* scrolls away normally */
+            background: transparent;
+        }
+
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            color: #ffffffff;
+        }
+
+        /* NAV BAR CENTER */
+        nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #035f5b;
+            font-weight: 500;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #013230;
+        }
+
+        /* LOGIN BUTTON */
+        .login-btn {
+            padding: 10px 25px;
+            background: white;
+            color: #035f5b;
+            border-radius: 25px;
+            border: none;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #035f5b;
+            color: white;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 120px;
+            display: flex;
+            justify-content: space-between;
+            padding: 50px 7%;
+            align-items: center;
+
+        }
+
+        /* Left Side */
+        .hero-left {
+            max-width: 45%;
+        }
+
+        .hero-left h1 {
+            font-size: 42px;
+            color: #003f3c;
+            margin-bottom: 15px;
+        }
+
+        .hero-left p {
+            font-size: 18px;
+            color: #003f3c;
+            margin-bottom: 25px;
+        }
+
+        .book-btn {
+            padding: 14px 35px;
+            background: #006f6a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .book-btn:hover {
+            background: #024542;
+        }
+
+        /* Right Side Image */
+        .doctor-img {
+            width: 750px;
+            filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15));
+            margin-top: -40px;
+            /* move image UP */
+        }
+
+        .stats-main {
+            background-color: #ffffffff;
+            padding: 30px;
+        }
+
+
+        .stats-bar {
+            width: 100%;
+            background: #65035e;
+            color: white;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stats-container {
+            max-width: 900px;
+            /* reduce width */
+            margin: 0 auto;
+            /* center the bar */
+        }
+
+
+        .stat h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            font-size: 18px;
+            opacity: 0.85;
+        }
+
+        .divider {
+            height: 40px;
+            /* Short elegant line */
+            width: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+        }
+
+        /* WHOLE SECTION BACKGROUND */
+        .heart-section {
+            background: #f4f2ff;
+            /* your color here */
+            padding: 60px 8%;
+            display: flex;
+            gap: 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* TWO COLUMNS */
+        .left-col,
+        .right-col {
+            flex: 1;
+            opacity: 0;
+            /* for animation */
+        }
+
+        /* TEXT */
+        .small-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .big-quote {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .description {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* TREATMENT LIST – TWO COLUMNS */
+        .treatments {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .treatments ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .treatments li {
+            margin-bottom: 8px;
+        }
+
+        /* RIGHT SIDE SERVICE ROWS */
+        .service-card {
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 3px solid rgba(140, 60, 255, 0.6);
+            /* soft purple line */
+            box-shadow: 0 0 8px rgba(140, 60, 255, 0.25);
+            background: transparent;
+            /* no panel background */
+            font-weight: 500;
+        }
+
+        /* ANIMATIONS */
+        .slide-left {
+            animation: slideInLeft 1s forwards ease-out;
+        }
+
+        .slide-right {
+            animation: slideInRight 1s forwards ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .heart-section {
+                flex-direction: column;
+            }
+        }
+
+
+        /* Fade-in animation class */
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+
+
+
+        /* ==== FADE ANIMATION BASE STYLES ==== */
+        .fade-left,
+        .fade-right,
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* LEFT */
+        .fade-left {
+            transform: translateX(-50px);
+        }
+
+        /* RIGHT */
+        .fade-right {
+            transform: translateX(50px);
+        }
+
+        /* UP */
+        .fade-up {
+            transform: translateY(50px);
+        }
+
+        .fade-down {
+            transform: translateY(50px);
+        }
+
+        /* ==== REVEALED STATE ==== */
+        .revealed {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+
+
+
+
+        .meet {
+            width: 100%;
+            /* make the section full width */
+            display: flex;
+            justify-content: center;
+            /* centers items horizontally */
+        }
+
+        .meet h2 {
+            text-align: center;
+            /* centers the text inside */
+            width: 100%;
+            /* allow full centering */
+            font-size: 36px;
+            color: #003f3c;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .meet h2 span {
+            color: #7b2cbf;
+        }
+
+        /* FOOTER BASE */
+        .footer {
+            background: linear-gradient(135deg, #d9c3ff, #c7a7ff);
+            padding: 50px 80px;
+            color: #2f2547;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* GRID LAYOUT */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT SECTION */
+        .footer-left {
+            width: 30%;
+        }
+
+        .footer-brand {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a2e7f;
+        }
+
+        .footer-verse {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #4d3c66;
+        }
+
+        /* CENTER LINKS */
+        .footer-links h3,
+        .footer-contact h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #4a2e7f;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: #3a2d54;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #6e3dd4;
+        }
+
+        /* RIGHT SECTION */
+        .footer-contact p {
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #3a2d54;
+        }
+
+        /* BOTTOM BAR */
+        .footer-bottom {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: #3a2d54;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .footer-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-left,
+            .footer-links,
+            .footer-contact {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .doctors-section {
+            text-align: center;
+            padding: 50px 20px;
+            font-family: "Poppins", sans-serif;
+            background-color: #ffffffff;
+        }
+
+        .sub-title {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .main-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .main-title span {
+            color: #ef5bec;
+        }
+
+        /* GRID – 3 columns, very small gap */
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            /* small gap as you requested */
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .doctor-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .doctor-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Round profile picture */
+        .doctor-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+        }
+
+        /* Text styling */
+        .spec,
+        .exp {
+            margin: 3px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Stars */
+        .stars {
+            color: gold;
+            margin: 8px 0;
+        }
+
+        /* Button */
+        .btn {
+            display: block;
+            padding: 10px 0;
+            background: #d554f2;
+            color: white;
+            border-radius: 25px;
+            margin: 12px auto 0;
+            text-decoration: none;
+            width: 80%;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #cf77f5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .doctor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .doctor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Medicare Plus</div>
+
+        <nav>
+            <ul>
+                <li><a href="medicare_home.php">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="doctors.html">Our Doctors</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <a href="login.php" class="login-btn">Login</a>
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+        <div class="hero-left fade-left">
+            <h1>Neurology Department</h1>
+            <p>Advanced brain and nervous system care from expert neurologists</p>
+
+
+            <a href="login.php" class="book-btn">Book Appointment</a>
+        </div>
+
+        <div class="hero-right fade-right">
+            <img src="neurobg.png" alt="Doctor" class="doctor-img">
+        </div>
+    </section>
+
+    <section class="stats-main">
+        <div class="stats-container fade-up">
+            <div class="stats-bar">
+                <div class="stat">
+                    <h2>12,540+</h2>
+                    <p>Patients Treated</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="stat">
+                    <h2>1,200+</h2>
+                    <p>Consultations</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="stat">
+                    <h2>900+</h2>
+                    <p>Brain Surgeries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section class="heart-section">
+
+    <div class="left-col fade-left">
+        <h4 class="small-title">Neurology Department</h4>
+
+        <h2 class="big-quote">
+            “Advanced brain and nerve care you can trust.”
+        </h2>
+
+        <p class="description">
+            Our neurology specialists diagnose and treat a wide range of neurological
+            conditions with precision and advanced medical technology.
+        </p>
+
+        <div class="treatments">
+            <ul>
+                <li>EEG Testing</li>
+                <li>Stroke Management</li>
+                <li>Migraine Treatment</li>
+                <li>Epilepsy Care</li>
+            </ul>
+
+            <ul>
+                <li>Parkinson's Monitoring</li>
+                <li>Nerve Conduction Studies</li>
+                <li>Memory & Cognitive Testing</li>
+                <li>Neuromuscular Care</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-col fade-right">
+        <div class="service-card">Brain Scans</div>
+        <div class="service-card">Neuro Diagnostics</div>
+        <div class="service-card">Stroke Recovery Care</div>
+        <div class="service-card">Seizure Monitoring</div>
+        <div class="service-card">Memory Clinics</div>
+        <div class="service-card">Neuro Pain Management</div>
+    </div>
+
+</section>
+
+
+
+
+    <section class="doctors-section">
+
+        <h4 class="sub-title">Medicare Plus</h4>
+        <h2 class="main-title">Our <span>Neurologists</span> </h2>
+
+        <div class="doctor-grid">
+
+            <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/men/21.jpg" alt="">
+            <h3>Dr. Kevin Moore</h3>
+            <p class="spec">Neurologist</p>
+            <p class="exp">14 years experience</p>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <a href="login.php" class="btn">Book Appointment</a>
+        </div>
+        <!-- Doctor 2 -->
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="">
+            <h3>Dr. Rachel Adams</h3>
+            <p class="spec">Neurologist</p>
+            <p class="exp">11 years experience</p>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <a href="login.php" class="btn">Book Appointment</a>
+        </div>
+        <!-- Doctor 3 -->
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/men/23.jpg" alt="">
+            <h3>Dr. Brian Clark</h3>
+            <p class="spec">Neurologist</p>
+            <p class="exp">9 years experience</p>
+            <div class="stars">⭐⭐⭐⭐☆</div>
+            <a href="login.php" class="btn">Book Appointment</a>
+        </div>
+        <!-- Doctor 4 -->
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/women/24.jpg" alt="">
+            <h3>Dr. Nancy Lewis</h3>
+            <p class="spec">Neurologist</p>
+            <p class="exp">12 years experience</p>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <a href="login.php" class="btn">Book Appointment</a>
+        </div>
+        <!-- Doctor 5 -->
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/men/25.jpg" alt="">
+            <h3>Dr. Steven Hall</h3>
+            <p class="spec">Neurologist</p>
+            <p class="exp">10 years experience</p>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <a href="login.php" class="btn">Book Appointment</a>
+        </div>
+        <!-- Doctor 6 -->
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/women/26.jpg" alt="">
+            <h3>Dr. Olivia Scott</h3>
+            <p class="spec">Neurologist</p>
+            <p class="exp">8 years experience</p>
+            <div class="stars">⭐⭐⭐⭐☆</div>
+            <a href="login.php" class="btn">Book Appointment</a>
+        </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- LEFT: Brand + Verse -->
+            <div class="footer-left">
+                <h2 class="footer-brand">Medicare Plus</h2>
+                <p class="footer-verse">
+                    "Your health is our mission — your trust is our strength."
+                </p>
+            </div>
+
+            <!-- CENTER: Navigation -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="medicare_home.php">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="doctors.html">Our Doctors</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- RIGHT: Contact + Info -->
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p><strong>Hours:</strong> Mon – Sat: 8.00am – 10.00pm</p>
+                <p><strong>Hotline:</strong> +94 77 123 4567</p>
+                <p><strong>Address:</strong> Colombo, Sri Lanka</p>
+                <p><strong>Email:</strong> support@medicareplus.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Medicare Plus — All Rights Reserved
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        const elements = document.querySelectorAll(".fade-left, .fade-right, .fade-up");
+
+        function revealOnScroll() {
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+                    el.classList.add("revealed");
+                } else {
+                    el.classList.remove("revealed"); // allows animation every scroll
+                }
+            });
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
+    </script>
+
+    <script>
+        const rows = document.querySelectorAll('.cards-row');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        rows.forEach(row => observer.observe(row));
+    </script>
+
+
+
+
+</body>
+
+</html>
