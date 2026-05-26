@@ -84,24 +84,6 @@ htdocs/
 http://localhost/medicare_plus/
 ```
 
----
-
-## Screenshots
-
-Add screenshots of:
-- Home page
-- Admin dashboard
-- Doctor dashboard
-- Appointment system
-- Contact page
-
-inside a folder named:
-
-```txt
-Screenshots/
-```
-
----
 
 ## Developer
 
